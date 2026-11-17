@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- leanview: height of the "Up next" band (layout/leanview_end_screen.xml, the stub in
+         lb_playback_fragment.xml and the rows shift in PlaybackFragment use the same value) -->
+    <dimen name="leanview_end_band_height">260dp</dimen>
+</resources>

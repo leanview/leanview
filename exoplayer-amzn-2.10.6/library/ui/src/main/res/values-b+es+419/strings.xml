@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- leanview: Latin American Spanish (es-419), taken from this module's values-es-rUS: only the
+     strings that differ from values-es, so es-UY and es-AR get the Latin wording. -->
+<resources>
+    <string name="exo_controls_next_description">Pista siguiente</string>
+    <string name="exo_controls_rewind_description">Retroceder</string>
+    <string name="exo_controls_fastforward_description">Avanzar</string>
+    <string name="exo_controls_shuffle_on_description">Reprod. aleatoria activada</string>
+    <string name="exo_controls_shuffle_off_description">Reprod. aleatoria desactivada</string>
+    <string name="exo_download_completed">Se completó la descarga</string>
+    <string name="exo_download_failed">No se pudo descargar</string>
+    <string name="exo_track_selection_title_video">Video</string>
+    <string name="exo_track_selection_auto">Automática</string>
+</resources>

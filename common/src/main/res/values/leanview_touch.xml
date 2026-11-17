@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- leanview: touch targets on a phone (see leanview/TouchTarget). 48 dp is the Android guideline; 40 dp is the hard floor. -->
+<resources>
+    <integer name="leanview_touch_target_min_dp">48</integer>
+    <integer name="leanview_touch_target_floor_dp">40</integer>
+    <!-- Side padding of the captions on a phone held upright, so they use the whole video width. -->
+    <integer name="leanview_caption_side_padding_portrait_dp">12</integer>
+</resources>

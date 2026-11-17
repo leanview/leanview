@@ -1,0 +1,100 @@
+apply from: '../../SharedModules/constants.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.android.library'
+
+android {
+
+    namespace 'com.liskovsoft.youtubeapi'
+    buildFeatures { buildConfig true }
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+    testOptions.unitTests.includeAndroidResources = true
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode 15
+        versionName "0.1.5"
+
+        // required for androidTest support
+        // more info: https://developer.android.com/training/testing/unit-testing/instrumented-unit-tests
+        // small tests: https://stackoverflow.com/questions/4671923/what-is-the-purpose-of-smalltest-mediumtest-and-largetest-annotations-in-an
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // More info: http://myhexaville.com/2017/03/10/android-multidex/
+        // Additionally, you should extend your application from MultiDexApplication
+        multiDexEnabled = true
+
+        // consumerProguardFiles 'proguard-rules.txt' // embed this file to aar
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), rootProject.file('proguard-dontoptimize.pro'), 'proguard-rules.pro'
+        }
+    }
+
+    // leanview: no product flavors here; the app has only its leanview flavor (final review M5)
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation project(':youtubeapi')
+    testImplementation project(':sharedtests')
+    testImplementation 'co.infinum:retromock:' + retromockVersion
+    testImplementation 'junit:junit:' + junitVersion
+    testImplementation 'org.robolectric:robolectric:' + robolectricVersion
+
+    androidTestImplementation project(':youtubeapi')
+    androidTestImplementation project(':sharedtests')
+    androidTestImplementation 'junit:junit:' + junitVersion
+    androidTestImplementation 'androidx.test:runner:' + testXSupportVersion
+    androidTestImplementation 'androidx.test:rules:' + testXSupportVersion
+
+    implementation project(':commons-io-2.8.0') // My Android 4.3 fix
+    implementation project(':sharedutils')
+    implementation project(':mediaserviceinterfaces')
+
+    implementation 'com.squareup.retrofit2:retrofit:' + retrofitVersion
+    implementation 'com.squareup.retrofit2:converter-gson:' + retrofitVersion
+    implementation 'com.google.code.gson:gson:' + gsonVersion
+    implementation 'com.jayway.jsonpath:json-path:' + jsonPathVersion
+
+    implementation 'com.google.net.cronet:cronet-okhttp:' + cronetOkHttpVersion
+    implementation 'org.chromium.net:cronet-api:' + cronetApiVersion
+
+    implementation 'io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion
+    implementation 'io.reactivex.rxjava2:rxjava:' + rxJavaVersion
+
+    implementation 'androidx.annotation:annotation:' + annotationXVersion
+
+    // js interpreter
+    // duktape fork
+    // implementation 'app.cash.quickjs:quickjs-android:' + quickjsVersion
+    //implementation 'com.squareup.duktape:duktape-android:' + duktapeVersion
+    //implementation 'org.mozilla:rhino:' + rhinoVersion
+
+    // leanview: QuickJS (MIT) through an Apache-2.0 wrapper. The engine it replaced was licensed EPL-1.0, which is not GPL compatible.
+    // leanview: the wrapper needs minSdk 21: only the leanview flavor (minSdk 23) is built from this branch.
+    implementation 'wang.harlon.quickjs:wrapper-android:3.2.3' // Apache-2.0, QuickJS
+    // leanview: the system's V8 in Android System WebView's sandboxed process (Apache-2.0), used first when the device has it with
+    // the features a solve needs; QuickJS above is the fallback. Its minSdk is 26: tools:overrideLibrary plus a run-time check.
+    implementation 'androidx.javascriptengine:javascriptengine:1.1.1'
+
+    // Add kotlin support libs
+    implementation 'androidx.core:core-ktx:' + kotlinCoreXVersion
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlinVersion
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + kotlinVersion
+
+
+    // NewPipe pot
+    implementation 'androidx.webkit:webkit:' + webkitVersion
+    implementation 'com.grack:nanojson:' + nanojsonVersion
+}

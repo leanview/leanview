@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- leanview: Latin American Spanish (es-419) for the app\'s own strings; only those that differ from values-es. -->
+<resources>
+    <string name="leanview_my_videos_empty">Todavía no subiste videos</string>
+    <string name="leanview_likes">%s Me gusta</string>
+    <string name="leanview_dislikes">%s No me gusta</string>
+</resources>

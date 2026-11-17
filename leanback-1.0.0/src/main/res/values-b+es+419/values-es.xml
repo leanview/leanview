@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- leanview: Latin American Spanish (es-419), taken from this module's values-es-rUS: only the
+     strings that differ from values-es, so es-UY and es-AR get the Latin wording. -->
+<resources>
+    <string name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string name="lb_onboarding_get_started">"COMENZAR"</string>
+    <string name="lb_playback_controls_closed_captioning_disable">"Inhabilitar subtítulos opcionales"</string>
+    <string name="lb_playback_controls_closed_captioning_enable">"Habilitar subtítulos opcionales"</string>
+    <string name="lb_playback_controls_fast_forward">"Adelantar"</string>
+    <string name="lb_playback_controls_fast_forward_multiplier">"Adelantar %1$dX"</string>
+    <string name="lb_playback_controls_hidden">"Los controles de contenido multimedia están ocultos; presiona el pad direccional para mostrarlos"</string>
+    <string name="lb_playback_controls_picture_in_picture">"Activar el modo de pantalla en pantalla"</string>
+    <string name="lb_playback_controls_rewind">"Retroceder"</string>
+    <string name="lb_playback_controls_rewind_multiplier">"Retroceder %1$dX"</string>
+    <string name="lb_playback_controls_shown">"Se muestran los controles de contenido multimedia"</string>
+    <string name="lb_playback_controls_shuffle_disable">"Inhabilitar reproducción aleatoria"</string>
+    <string name="lb_playback_controls_shuffle_enable">"Habilitar reproducción aleatoria"</string>
+    <string name="lb_playback_controls_skip_next">"Ir al siguiente"</string>
+    <string name="lb_playback_controls_skip_previous">"Ir al anterior"</string>
+    <string name="lb_playback_controls_thumb_down">"Anular selección de No me gusta"</string>
+    <string name="lb_playback_controls_thumb_up">"Anular selección de Me gusta"</string>
+    <string name="lb_search_bar_hint">"Buscar"</string>
+    <string name="orb_search_action">"Acción de búsqueda"</string>
+</resources>

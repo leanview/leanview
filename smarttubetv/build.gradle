@@ -1,0 +1,310 @@
+apply from: gradle.ext.sharedModulesConstants
+
+// leanview: upstream's Google Services / Crashlytics plugins served only its stbeta and ststable flavors, removed with
+// them (final review M5). Leanview has no Firebase.
+
+apply plugin: 'com.android.application'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+
+    namespace 'com.liskovsoft.smartyoutubetv2.tv'
+    buildFeatures { buildConfig true }
+    // FIX: Default interface methods are only supported starting with Android N (--min-api 24)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileSdkVersion project.properties.compileSdkVersion
+    buildToolsVersion project.properties.buildToolsVersion
+    testOptions.unitTests.includeAndroidResources = true
+    ndkVersion "21.0.6113669" // reduce size of the *.so files (stripping debug symbols)
+    
+    defaultConfig {
+        // values linked with applicationId: searchable.searchSuggestAuthority, searchable.searchSuggestIntentData, VideoContract.CONTENT_AUTHORITY
+        applicationId "app.smarttube"
+        minSdkVersion project.properties.minSdkVersion
+        targetSdkVersion project.properties.targetSdkVersion
+        versionCode 2458
+        versionName "32.68"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
+
+        // More info: http://myhexaville.com/2017/03/10/android-multidex/
+        // Additionally, you should extend your application from MultiDexApplication
+        multiDexEnabled = true
+
+        // Trying to fix VerifyError/ClassNotFoundException
+        multiDexKeepProguard file("multidex-keep.pro")
+
+        // The content of Universal apk
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    // https://stackoverflow.com/questions/37382057/android-apk-how-to-exclude-a-so-file-from-a-3rd-party-dependency-using-gradle
+    // armeabi-v7a backward compatible with arm64-v8a, x86 -> x86_64 etc
+    splits {
+        abi {
+            enable true
+            reset()
+            // Note, Android could soon start warning users when they run 32-bit apps
+            //include 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a' //select ABIs to build APKs for
+            include 'armeabi-v7a', 'arm64-v8a', 'x86' // v7a main build, x86 for WSL, v8a for Pixel Tablet (no 32 bit support)
+            universalApk true //generate an additional APK that contains all the ABIs
+        }
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                storeFile = file(keystoreProperties['storeFile'])
+                storePassword = keystoreProperties['storePassword']
+                keyAlias = keystoreProperties['keyAlias']
+                keyPassword = keystoreProperties['keyPassword']
+            }
+        }
+    }
+    
+    buildTypes {
+        release {
+            // Enable minification
+            // shrinkResources true
+            // minifyEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // leanview: no META-INF/version-control-info.textproto in a release APK. AGP writes the HEAD revision of the
+            // checkout it builds from there, and the release builds come from a different history than the published
+            // source snapshot (final review, M8).
+            vcsInfo {
+                include false
+            }
+
+            if (keystorePropertiesFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+        }
+        // Use same key for release and debug for testing
+        debug {
+            if (keystorePropertiesFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+            // leanview: DEBUG builds only. The android-33 google_apis x86_64 emulator image (rev 17, 2026-11) has no ARM
+            // translation: without this the APK fails there with INSTALL_FAILED_NO_MATCHING_ABIS (measured 2026-11-14).
+            // The universal debug APK then carries lib/x86_64 as well. Release ABIs are unchanged (defaultConfig and the
+            // splits) and checkReleaseAbis fails the release build if x86_64 ever shows up in them.
+            ndk {
+                abiFilters 'x86_64'
+            }
+        }
+    }
+
+    // naming example: SmartYouTubeTV_Xwalk_v6.8.12_r.apk
+    // https://stackoverflow.com/questions/18332474/how-to-set-versionname-in-apk-filename-using-gradle
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def version = variant.versionName
+            def arch = output.getFilter(com.android.build.OutputFile.ABI)
+            arch = arch != null ? arch : "universal"
+
+            // leanview: Leanview's files carry its own name and no flavor: Leanview_1.0.0_arm64-v8a.apk
+            def newApkName = sprintf("Leanview_%s_%s.apk", [version, arch])
+
+            // gradle 4.6 migration
+            output.outputFileName = new File(newApkName)
+        }
+    }
+
+    packagingOptions {
+        // openvpn module fix: More than one file was found with OS independent path 'META-INF/com.android.tools/proguard/coroutines.pro'
+        //exclude 'META-INF/com.android.tools/proguard/coroutines.pro'
+        // Not working!
+        // exclude '**/SearchOrbView.class'
+
+        // Remove unneeded arches from universal apk here because 'splits' cannot do this
+        // exclude "lib/x86_64/**"
+        // exclude "lib/armeabi/**"
+    }
+
+    lintOptions {
+        abortOnError true
+        //checkReleaseBuilds false // fix for ClassNotFoundException: com.android.tools.lint.client.api.Vendor
+    }
+
+    // gradle 4.6 migration: disable dimensions mechanism
+    // more: https://proandroiddev.com/advanced-android-flavors-part-4-a-new-version-fc2ad80c01bb
+    flavorDimensions "default"
+
+    // NOTE: The main goal of prefixing a flavor is to group flavors' folders together
+    productFlavors {
+        // leanview: Leanview (decided 2026-11-14): its own package, name, version and update channel (the
+        // manifest in the leanview/leanview GitHub releases, see update_urls.xml). It installs beside the
+        // official SmartTube and shares nothing with it. Upstream's stbeta, ststable and stfdroid flavors
+        // (minSdk 17, QuickJS needs 21) were removed (final review M5); the libraries have no flavors.
+        leanview {
+            applicationId "app.leanview.tv"
+            // Android 6.0+: the server connection keeps its keys in the Android keystore and uses
+            // libsodium (lazysodium, minSdk 21). Android 14 TVs are the target.
+            minSdkVersion 23
+            // Leanview's own version (-PleanviewVersion=X.Y.Z, 1.0.0 for the first release).
+            // versionCode = major * 10000 + minor * 100 + patch (minor and patch below 100): 1.0.0 = 10000,
+            // 1.0.1 = 10001, 1.1.0 = 10100, 2.0.0 = 20000. It only grows with the version, which is what the
+            // update check compares (the release tooling uses the same formula).
+            def leanviewVersion = (project.findProperty('leanviewVersion') ?: '1.0.0') as String
+            if (!(leanviewVersion ==~ /\d+\.\d+\.\d+/)) {
+                throw new GradleException("leanviewVersion must be major.minor.patch, got '${leanviewVersion}'")
+            }
+            def leanviewParts = leanviewVersion.tokenize('.').collect { it as int }
+            if (leanviewParts[1] > 99 || leanviewParts[2] > 99) {
+                throw new GradleException("leanviewVersion: minor and patch must be below 100, got '${leanviewVersion}'")
+            }
+            versionName leanviewVersion
+            versionCode leanviewParts[0] * 10000 + leanviewParts[1] * 100 + leanviewParts[2]
+            targetSdkVersion project.properties.compileSdkVersion
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation 'androidx.leanback:leanback:' + leanbackXVersion
+    implementation 'androidx.leanback:leanback-preference:' + leanbackXVersion
+    implementation 'androidx.recommendation:recommendation:' + leanbackXVersion
+    implementation 'androidx.annotation:annotation:' + annotationXVersion
+    implementation 'androidx.recyclerview:recyclerview:' + recyclerviewXVersion // exoplayer 2.12.1 fix
+    implementation 'androidx.media:media:' + mediaXVersion // exoplayer fix
+    implementation 'androidx.constraintlayout:constraintlayout:' + constraintLayoutXVersion
+
+    implementation 'com.github.bumptech.glide:glide:' + glideVersion
+    implementation 'com.github.bumptech.glide:annotations:' + glideVersion
+    annotationProcessor 'com.github.bumptech.glide:compiler:' + glideVersion
+    implementation 'com.github.zjupure:webpdecoder:' + webpDecoderVersion
+    implementation 'androidx.multidex:multidex:' + multiDexVersion
+
+    //////// BEGIN EXOPLAYER /////////
+
+    implementation project(':exoplayer-library-core')
+    implementation project(':exoplayer-library-ui')
+    implementation project(':exoplayer-extension-leanback')
+    implementation project(':exoplayer-extension-mediasession')
+
+    // implementation 'com.amazon.android:exoplayer:' + amazonExoplayerVersion
+    // implementation 'com.amazon.android:extension-leanback:' + amazonExoplayerVersion
+    // implementation 'com.amazon.android:extension-mediasession:' + amazonExoplayerVersion
+
+    // implementation 'com.google.android.exoplayer:exoplayer:' + exoplayerVersion
+    // implementation 'com.google.android.exoplayer:extension-leanback:' + exoplayerVersion
+    // implementation 'com.google.android.exoplayer:extension-mediasession:' + exoplayerVersion
+
+    // implementation 'com.github.amzn:exoplayer-amazon-port:' + amazonExoplayerJitpackVersion
+
+    //////// END EXOPLAYER //////////
+
+    testImplementation 'junit:junit:' + junitVersion
+    testImplementation 'org.robolectric:robolectric:' + robolectricVersion
+    androidTestImplementation 'androidx.test.ext:junit:' + testXSupportVersion
+    androidTestImplementation 'androidx.test.ext:truth:' + testXSupportVersion
+    androidTestImplementation 'androidx.test:runner:' + testXSupportVersion
+    androidTestImplementation 'androidx.test:rules:' + testXSupportVersion
+    androidTestImplementation 'androidx.test.espresso:espresso-core:' + espressoVersion
+
+    implementation project(':fragment-1.1.0')
+    implementation project(':leanback-1.0.0')
+    implementation project(':common')
+    implementation project(':sharedutils')
+    implementation project(':mediaserviceinterfaces')
+    implementation project(':youtubeapi')
+    implementation project(':chatkit')
+    implementation project(':doubletapplayerview')
+
+    implementation 'io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion
+    implementation 'io.reactivex.rxjava2:rxjava:' + rxJavaVersion
+
+    // debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+
+    implementation 'net.gotev:speech:' + gotevSpeechVersion
+
+    // ByeByeDPI fix
+    implementation 'org.conscrypt:conscrypt-android:' + conscryptVersion
+
+    implementation 'androidx.work:work-runtime:' + workVersion
+}
+
+// leanview: x86_64 is for DEBUG builds (the emulator) only. Release APKs are arm64-v8a, armeabi-v7a and the universal
+// one that holds both. This reads the real DSL, so a x86_64 added to defaultConfig, a flavor, the release build type
+// or the ABI splits fails here, and assembleLeanviewRelease depends on it. The release tooling checks
+// the built files too.
+tasks.register('checkReleaseAbis') {
+    group = 'verification'
+    description = 'Fails when a release configuration lists x86_64 (debug builds only)'
+    doLast {
+        def listed = [:]
+        listed['defaultConfig ndk'] = android.defaultConfig.ndk.abiFilters
+        android.productFlavors.each { listed["flavor ${it.name} ndk".toString()] = it.ndk.abiFilters }
+        listed['release ndk'] = android.buildTypes.release.ndk.abiFilters
+        // the ABI splits: the property is called differently across AGP versions; never skip it silently
+        def abiSplit = android.splits.abi
+        def splitProperty = ['applicableFilters', 'includes', 'include'].find { abiSplit.hasProperty(it) }
+        if (splitProperty == null) {
+            throw new GradleException("checkReleaseAbis cannot read android.splits.abi: update this task for the new AGP")
+        }
+        listed['splits abi'] = abiSplit."${splitProperty}"
+        def bad = listed.findAll { name, abis -> abis != null && abis.contains('x86_64') }.keySet()
+        listed.each { name, abis -> println("checkReleaseAbis: ${name}: ${abis}") }
+        if (!bad.isEmpty()) {
+            throw new GradleException("x86_64 is listed in a RELEASE configuration (${bad.join(', ')}); it belongs to the debug build type only")
+        }
+        if (!android.buildTypes.debug.ndk.abiFilters.contains('x86_64')) {
+            throw new GradleException("the debug build type must list x86_64 (emulator images have no ARM translation)")
+        }
+    }
+}
+tasks.matching { it.name == 'assembleLeanviewRelease' || it.name == 'bundleLeanviewRelease' }.configureEach {
+    dependsOn 'checkReleaseAbis'
+}
+
+// leanview: Leanview's legal texts are bundled as assets (Settings > About > Licenses). They are COPIED at build time from
+// public-repo/ (LICENSE, NOTICE.md and THIRD_PARTY_NOTICES.md, the files of the public repo; the last is generated
+// from the dependency graph), never kept a second time. leanview only; the build fails when a file is missing.
+abstract class LeanviewLegalAssets extends DefaultTask {
+    @InputFile abstract RegularFileProperty getLicense()
+    @InputFile abstract RegularFileProperty getNotice()
+    @InputFile abstract RegularFileProperty getNotices()
+    @OutputDirectory abstract DirectoryProperty getOutputDir()
+
+    @TaskAction
+    void copyTexts() {
+        def target = new File(outputDir.get().asFile, 'leanview_legal')
+        target.deleteDir()
+        target.mkdirs()
+        new File(target, 'LICENSE').setBytes(license.get().asFile.bytes)
+        new File(target, 'NOTICE.md').setBytes(notice.get().asFile.bytes)
+        new File(target, 'THIRD_PARTY_NOTICES.md').setBytes(notices.get().asFile.bytes)
+    }
+}
+
+// The documents live in public-repo/ in the development tree and at the ROOT of a published source snapshot
+// (the release tooling moves them there), so the build looks in public-repo/ first and then at the root.
+def legalDocs = rootProject.file('public-repo').isDirectory() ? rootProject.layout.projectDirectory.dir('public-repo') : rootProject.layout.projectDirectory
+
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        if (variant.flavorName == 'leanview') {
+            def legal = tasks.register("generate${variant.name.capitalize()}LeanviewLegalAssets", LeanviewLegalAssets) { task ->
+                task.license.set(legalDocs.file('LICENSE'))
+                task.notice.set(legalDocs.file('NOTICE.md'))
+                task.notices.set(legalDocs.file('THIRD_PARTY_NOTICES.md'))
+            }
+            variant.sources.assets.addGeneratedSourceDirectory(legal, { it.outputDir })
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- leanview: defaults that the leanview flavor turns on in its own res/values. -->
+<resources>
+    <!-- Left menu without the topic sections (Kids, Sports, Live, Gaming, News; Music stays, after Subscriptions). -->
+    <bool name="leanview_hide_topic_sections">false</bool>
+    <!-- Player without the debug info button (the bug icon); still in Settings > Player > Player buttons. -->
+    <bool name="leanview_hide_debug_button">false</bool>
+    <!-- About without what comes from the official SmartTube channel: the "install the bridge" button downloads from
+         SmartTube's releases. -->
+    <bool name="leanview_hide_official_channel">false</bool>
+    <!-- Folder of the backups in Documents and Google Drive (BackupFolders); a restore also looks into SmartTubeBackup. -->
+    <string name="leanview_backup_folder" translatable="false">SmartTubeBackup</string>
+</resources>

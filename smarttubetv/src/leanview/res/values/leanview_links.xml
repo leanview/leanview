@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- leanview: About > Releases / Sources point at Leanview's repo, not at SmartTube's channels. -->
+<resources>
+    <string name="releases_url" translatable="false">https://github.com/leanview/leanview/releases</string>
+    <string name="sources_url" translatable="false">https://github.com/leanview/leanview</string>
+    <string name="web_site_url" translatable="false">https://github.com/leanview/leanview</string>
+    <!-- No donation or support links: the upstream ones belong to SmartTube's author. About hides an empty list. -->
+    <string-array name="donations">
+    </string-array>
+    <string-array name="feedback">
+    </string-array>
+</resources>

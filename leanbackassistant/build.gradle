@@ -1,0 +1,59 @@
+apply from: gradle.ext.sharedModulesConstants
+apply plugin: 'com.android.library'
+
+android {
+
+    namespace 'com.liskovsoft.leanbackassistant'
+    buildFeatures { buildConfig true }
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+    testOptions.unitTests.includeAndroidResources = true
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode 2
+        versionName "0.2"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), rootProject.file('proguard-dontoptimize.pro'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+        disable 'MissingTranslation'
+    }
+
+    // leanview: no product flavors here; the app has only its leanview flavor (final review M5)
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // MOD: add custom lib
+    implementation project(':leanback-1.0.0')
+    implementation project(':sharedutils')
+    implementation project(':mediaserviceinterfaces')
+    implementation project(':youtubeapi')
+
+    //implementation 'com.android.support:leanback-v17:' + supportLibraryVersion
+    implementation 'androidx.leanback:leanback:' + leanbackXVersion
+    implementation 'androidx.tvprovider:tvprovider:' + leanbackXVersion
+    implementation 'androidx.recommendation:recommendation:' + leanbackXVersion
+    implementation 'com.github.bumptech.glide:glide:' + glideVersion
+
+    implementation 'io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion
+    implementation 'io.reactivex.rxjava2:rxjava:' + rxJavaVersion
+    implementation 'com.squareup.okhttp3:okhttp:' + okhttpVersion
+    implementation 'androidx.work:work-runtime:' + workVersion
+    implementation 'com.google.guava:guava:' + guavaVersion
+}

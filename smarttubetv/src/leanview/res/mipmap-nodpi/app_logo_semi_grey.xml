@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Leanview logo (brand B). Generated from one drawing: change the generator, not this file. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <path
+        android:fillColor="#59666F"
+        android:pathData="M22,0 L74,0 A22,22 0 0 1 96,22 L96,74 A22,22 0 0 1 74,96 L22,96 A22,22 0 0 1 0,74 L0,22 A22,22 0 0 1 22,0 Z"/>
+    <path
+        android:pathData="M25,24 L57,24 A9,9 0 0 1 66,33 L66,55 A9,9 0 0 1 57,64 L25,64 A9,9 0 0 1 16,55 L16,33 A9,9 0 0 1 25,24 Z"
+        android:strokeColor="#F4F8FB"
+        android:strokeWidth="6"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="butt"/>
+    <path
+        android:pathData="M38,74 L48,74"
+        android:strokeColor="#F4F8FB"
+        android:strokeWidth="6"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round"/>
+    <!-- gap -->
+    <path
+        android:fillColor="#59666F"
+        android:pathData="M48,32 L78,48 L48,64 Z"
+        android:strokeColor="#59666F"
+        android:strokeWidth="15"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="butt"/>
+    <path
+        android:fillColor="#F4F8FB"
+        android:pathData="M48,32 L78,48 L48,64 Z"
+        android:strokeColor="#F4F8FB"
+        android:strokeWidth="8"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="butt"/>
+</vector>

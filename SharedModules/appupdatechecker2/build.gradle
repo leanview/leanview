@@ -1,0 +1,62 @@
+apply from: '../constants.gradle'
+apply plugin: 'com.android.library'
+
+android {
+
+    namespace 'com.liskovsoft.appupdatechecker2'
+    buildFeatures { buildConfig true }
+    // FIX: Default interface methods are only supported starting with Android N (--min-api 24)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // allow other modules import debug/release configurations
+    //publishNonDefault true
+
+    compileSdkVersion project.properties.compileSdkVersion
+    buildToolsVersion project.properties.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion project.properties.minSdkVersion
+        targetSdkVersion project.properties.targetSdkVersion
+        versionCode 10
+        versionName "1.0.1"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), rootProject.file('proguard-dontoptimize.pro'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+        disable 'MissingTranslation'
+        //lintConfig rootProject.file('lint.xml')
+    }
+
+    // leanview: no product flavors here; the app has only its leanview flavor (final review M5)
+}
+
+dependencies {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:' + junitVersion
+
+    // Removed melautils.jar - only StreamUtils was used, now provided as source
+    // See: src/main/java/edu/mit/mobile/android/utils/StreamUtils.java
+
+    implementation project(path: ':sharedutils')
+
+    implementation 'androidx.appcompat:appcompat:' + appCompatXVersion
+
+    implementation 'dnsjava:dnsjava:' + dnsjavaVersion
+
+    implementation 'com.squareup.okhttp3:okhttp:' + okhttpVersion
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- leanview: the band of the "Up next" end screen: fully opaque, so nothing of the player's controls under it
+     shows through (at #F5 the clock and "Restante 0:00" still did, 2026-11-04) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#FF0F0F0F" />
+</shape>
