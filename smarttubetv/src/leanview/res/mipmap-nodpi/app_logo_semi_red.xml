@@ -1,38 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Leanview logo (brand B). Generated from one drawing: change the generator, not this file. -->
+<!-- LeanView logo (brand D). Generated from one drawing: change the generator, not this file. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="96dp"
     android:height="96dp"
     android:viewportWidth="96"
     android:viewportHeight="96">
     <path
-        android:fillColor="#7A4651"
+        android:fillColor="#5B21B6"
         android:pathData="M22,0 L74,0 A22,22 0 0 1 96,22 L96,74 A22,22 0 0 1 74,96 L22,96 A22,22 0 0 1 0,74 L0,22 A22,22 0 0 1 22,0 Z"/>
     <path
-        android:pathData="M25,24 L57,24 A9,9 0 0 1 66,33 L66,55 A9,9 0 0 1 57,64 L25,64 A9,9 0 0 1 16,55 L16,33 A9,9 0 0 1 25,24 Z"
-        android:strokeColor="#F4F8FB"
-        android:strokeWidth="6"
-        android:strokeLineJoin="round"
-        android:strokeLineCap="butt"/>
-    <path
-        android:pathData="M38,74 L48,74"
-        android:strokeColor="#F4F8FB"
-        android:strokeWidth="6"
-        android:strokeLineJoin="round"
-        android:strokeLineCap="round"/>
-    <!-- gap -->
-    <path
-        android:fillColor="#7A4651"
-        android:pathData="M48,32 L78,48 L48,64 Z"
-        android:strokeColor="#7A4651"
-        android:strokeWidth="15"
-        android:strokeLineJoin="round"
-        android:strokeLineCap="butt"/>
-    <path
         android:fillColor="#F4F8FB"
-        android:pathData="M48,32 L78,48 L48,64 Z"
-        android:strokeColor="#F4F8FB"
-        android:strokeWidth="8"
+        android:pathData="M25.13,29 L64.74,23.43 A10,10 0 0 1 76.04,31.94 L79.1,53.73 A10,10 0 0 1 70.59,65.02 L30.98,70.59 A10,10 0 0 1 19.68,62.08 L16.62,40.29 A10,10 0 0 1 25.13,29 Z"/>
+    <path
+        android:fillColor="#5B21B6"
+        android:pathData="M40.53,37.94 L57.76,45.62 L43.31,57.75 Z"
+        android:strokeColor="#5B21B6"
+        android:strokeWidth="5"
         android:strokeLineJoin="round"
         android:strokeLineCap="butt"/>
 </vector>

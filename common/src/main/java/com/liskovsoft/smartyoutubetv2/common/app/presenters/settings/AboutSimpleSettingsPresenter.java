@@ -60,7 +60,7 @@ public class AboutSimpleSettingsPresenter extends BasePresenter<Void> {
     }
 
     private void appendInstallBridge(AppDialogPresenter settingsPresenter) {
-        // leanview: the bridge APKs come from SmartTube's releases; Leanview (leanview) does not offer them
+        // leanview: the bridge APKs come from SmartTube's releases; LeanView (leanview) does not offer them
         if (getContext().getResources().getBoolean(R.bool.leanview_hide_official_channel)) {
             return;
         }

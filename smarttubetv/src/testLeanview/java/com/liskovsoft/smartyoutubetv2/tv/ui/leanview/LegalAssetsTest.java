@@ -53,7 +53,7 @@ public class LegalAssetsTest {
         String asset = assets().read(LegalTexts.NOTICE);
         assertNotNull("assets/leanview_legal/NOTICE.md is bundled", asset);
         assertEquals(repoFile("NOTICE.md"), asset);
-        assertTrue("the holder is the contributors (owner ruling 2026-11-16)", asset.contains("Copyright (c) 2026 Leanview contributors"));
+        assertTrue("the holder is the contributors (owner ruling 2026-11-16)", asset.contains("Copyright (c) 2026 LeanView contributors"));
         assertTrue("SmartTube's MIT notice stays, verbatim", asset.contains("MIT License\n\nCopyright (c) 2020-present yuliskov\n"));
         assertTrue(asset.contains("NewPipe"));
         assertTrue(asset.contains("bgutil-ytdlp-pot-provider"));
@@ -71,7 +71,7 @@ public class LegalAssetsTest {
         assertTrue(quickJs > 0);
         assertTrue(asset.substring(quickJs, quickJs + 200).contains("License: MIT"));
         assertTrue(asset.contains("Fabrice Bellard"));
-        assertTrue("the bundled ejs says it is modified", asset.contains("Modified by Leanview when the file is loaded"));
+        assertTrue("the bundled ejs says it is modified", asset.contains("Modified by LeanView when the file is loaded"));
     }
 
     @Test

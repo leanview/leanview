@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-// leanview: the leanview flavor is "Leanview" (decided 2026-11-14): its own package, its own version, its own
+// leanview: the leanview flavor is "LeanView" (decided 2026-11-14): its own package, its own version, its own
 // update channel, and no visible "SmartTube" or personal handle anywhere in its text. This test lives in the flavor's
 // own test source set (src/testLeanview), so it runs with testLeanviewDebugUnitTest only: the other flavors keep
 // upstream's identity. The built APK is checked the same way by scripts/scan_apk_for_host.py --text.
@@ -95,16 +95,16 @@ public class LeanviewIdentityTest {
 
     @Test
     public void theAppIsCalledLeanview() {
-        assertEquals("Leanview", context().getString(R.string.app_name));
-        assertEquals("Leanview", context().getString(R.string.browse_title));
-        assertEquals("Leanview", context().getString(R.string.search_label));
+        assertEquals("LeanView", context().getString(R.string.app_name));
+        assertEquals("LeanView", context().getString(R.string.browse_title));
+        assertEquals("LeanView", context().getString(R.string.search_label));
     }
 
     @Test
     @Config(sdk = 28, qualifiers = "es")
     public void theSearchSettingsAreNamedInSpanishToo() {
-        assertEquals("Leanview", context().getString(R.string.search_label));
-        assertEquals("Videos de Leanview", context().getString(R.string.settings_description));
+        assertEquals("LeanView", context().getString(R.string.search_label));
+        assertEquals("Videos de LeanView", context().getString(R.string.settings_description));
     }
 
     @Test
@@ -134,7 +134,7 @@ public class LeanviewIdentityTest {
             Intent intent = new Intent(Intent.ACTION_MAIN).addCategory(category).setPackage(context().getPackageName());
             List<ResolveInfo> tiles = pm.queryIntentActivities(intent, 0);
             assertTrue("no " + category + " entry", !tiles.isEmpty());
-            assertEquals("Leanview", tiles.get(0).loadLabel(pm).toString());
+            assertEquals("LeanView", tiles.get(0).loadLabel(pm).toString());
         }
     }
 

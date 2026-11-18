@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- leanview: textos de las funciones propias de Leanview. -->
+<!-- leanview: textos de las funciones propias de LeanView. -->
 <resources>
     <string name="leanview_server_connect">Conectar con un servidor</string>
     <string name="leanview_server_address_title">Dirección del servidor</string>

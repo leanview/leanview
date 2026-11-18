@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * leanview: the legal texts of Leanview (LICENSE and THIRD_PARTY_NOTICES.md of public-repo/) that the leanview flavor
+ * leanview: the legal texts of LeanView (LICENSE and THIRD_PARTY_NOTICES.md of public-repo/) that the leanview flavor
  * bundles as assets at build time (smarttubetv/build.gradle copies them, nothing is kept twice). Other flavors have no
  * such assets: {@link #fromAssets} then answers null and Settings > About shows no Licenses button.
  */

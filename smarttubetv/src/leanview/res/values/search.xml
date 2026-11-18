@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- leanview: Leanview's own global-search identity; the authority must equal the applicationId. -->
+<!-- leanview: LeanView's own global-search identity; the authority must equal the applicationId. -->
 <resources>
-    <string name="search_label">Leanview</string>
-    <string name="settings_description">Leanview Videos</string>
+    <string name="search_label">LeanView</string>
+    <string name="settings_description">LeanView Videos</string>
     <string translatable="false" name="search_authority">app.leanview.tv</string>
 </resources>

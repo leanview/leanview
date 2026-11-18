@@ -25,7 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-// leanview: Settings > About > Licenses (Leanview legal texts, public-repo/ bundled as assets by the flavor build).
+// leanview: Settings > About > Licenses (LeanView legal texts, public-repo/ bundled as assets by the flavor build).
 // The pure pieces (paging, the dialog contents, the missing-asset case) are tested here against a fake text source;
 // the real assets of the built flavor are checked by LegalAssetsTest in src/testLeanview.
 @RunWith(RobolectricTestRunner.class)
@@ -62,7 +62,7 @@ public class LicensesDialogTest {
 
     private static LegalTexts.Source source(final String license, final String notices) {
         return path -> LegalTexts.LICENSE.equals(path) ? license : LegalTexts.NOTICES.equals(path) ? notices
-                : LegalTexts.NOTICE.equals(path) ? "Leanview is based on SmartTube (MIT)." : null;
+                : LegalTexts.NOTICE.equals(path) ? "LeanView is based on SmartTube (MIT)." : null;
     }
 
     // ---- paging
@@ -122,7 +122,7 @@ public class LicensesDialogTest {
     @Test
     public void withTheTextsThereIsOneLicensesButtonInAbout() {
         Recorder recorder = new Recorder(context());
-        LicensesDialog.append(recorder, context(), source("MIT License\nCopyright (c) 2026 Leanview contributors\n", "# Notices\n"));
+        LicensesDialog.append(recorder, context(), source("MIT License\nCopyright (c) 2026 LeanView contributors\n", "# Notices\n"));
         assertEquals(1, recorder.buttons.size());
         assertEquals(context().getString(R.string.leanview_licenses), String.valueOf(recorder.buttons.get(0).getTitle()));
     }
@@ -145,11 +145,11 @@ public class LicensesDialogTest {
             notices.append("### component ").append(i).append("\nLicense: MIT\n\n");
         }
         Recorder recorder = new Recorder(context());
-        LicensesDialog.show(recorder, context(), source("MIT License\nCopyright (c) 2026 Leanview contributors\n", notices.toString()), 300);
+        LicensesDialog.show(recorder, context(), source("MIT License\nCopyright (c) 2026 LeanView contributors\n", notices.toString()), 300);
         assertEquals(context().getString(R.string.leanview_licenses), String.valueOf(recorder.shownTitle));
         List<String> titles = new ArrayList<>(recorder.longTexts.keySet());
         assertEquals(context().getString(R.string.leanview_licenses_license), titles.get(0));
-        assertTrue(recorder.longTexts.get(titles.get(0)).contains("Copyright (c) 2026 Leanview contributors"));
+        assertTrue(recorder.longTexts.get(titles.get(0)).contains("Copyright (c) 2026 LeanView contributors"));
         assertEquals(context().getString(R.string.leanview_licenses_notice), titles.get(1));
         assertTrue(recorder.longTexts.get(titles.get(1)).contains("SmartTube"));
         int pages = titles.size() - 2;

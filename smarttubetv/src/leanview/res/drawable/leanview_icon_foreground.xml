@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Leanview logo (brand B). Generated from one drawing: change the generator, not this file. -->
+<!-- LeanView logo (brand D). Generated from one drawing: change the generator, not this file. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
-        android:pathData="M35.62,38.42 L59.43,38.42 A6.3,6.3 0 0 1 65.72,44.73 L65.72,61.53 A6.3,6.3 0 0 1 59.43,67.83 L35.62,67.83 A6.3,6.3 0 0 1 29.33,61.53 L29.33,44.73 A6.3,6.3 0 0 1 35.62,38.42 Z"
-        android:strokeColor="#E8EEF5"
-        android:strokeWidth="4.9"
-        android:strokeLineJoin="round"
-        android:strokeLineCap="butt"/>
-    <!-- gap -->
+        android:fillColor="#FFFFFF"
+        android:pathData="M36.94,40.48 L66.68,36.3 A7.51,7.51 0 0 1 75.16,42.69 L77.46,59.04 A7.51,7.51 0 0 1 71.06,67.52 L41.32,71.7 A7.51,7.51 0 0 1 32.84,65.31 L30.54,48.96 A7.51,7.51 0 0 1 36.94,40.48 Z"/>
     <path
-        android:fillColor="#0F1623"
-        android:pathData="M54.52,44.03 L78.33,56.62 L54.52,69.22 Z"
-        android:strokeColor="#0F1623"
-        android:strokeWidth="10.5"
-        android:strokeLineJoin="round"
-        android:strokeLineCap="butt"/>
-    <path
-        android:fillColor="#FF6F61"
-        android:pathData="M54.52,44.03 L78.33,56.62 L54.52,69.22 Z"
-        android:strokeColor="#FF6F61"
-        android:strokeWidth="5.6"
+        android:fillColor="#7C3AED"
+        android:pathData="M48.49,47.19 L61.44,52.96 L50.58,62.06 Z"
+        android:strokeColor="#7C3AED"
+        android:strokeWidth="3.75"
         android:strokeLineJoin="round"
         android:strokeLineCap="butt"/>
 </vector>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- leanview: Leanview's update channel (decided 2026-11-14): the manifest of the newest release in the public
+    <!-- leanview: LeanView's update channel (decided 2026-11-14): the manifest of the newest release in the public
          leanview/leanview GitHub repo. This URL never changes; each release uploads its own update.json (same shape as
          SmartTube's update manifest). Nothing of the official SmartTube channel is used by this flavor. -->
     <string-array name="update_urls">

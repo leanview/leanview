@@ -6,7 +6,7 @@
 
 ## Español
 
-**Leanview no recoge nada.** No hay cuenta de Leanview, ni análisis de uso, ni informes de errores, ni publicidad, ni telemetría, y no existe ningún servidor de Leanview que reciba datos. La aplicación no incluye Firebase, Crashlytics ni ningún componente parecido (se comprobó en el código y en el APK publicado). Tus ajustes, tu historial local y los datos de inicio de sesión se guardan solo en tu dispositivo.
+**LeanView no recoge nada.** No hay cuenta de LeanView, ni análisis de uso, ni informes de errores, ni publicidad, ni telemetría, y no existe ningún servidor de LeanView que reciba datos. La aplicación no incluye Firebase, Crashlytics ni ningún componente parecido (se comprobó en el código y en el APK publicado). Tus ajustes, tu historial local y los datos de inicio de sesión se guardan solo en tu dispositivo.
 
 Lo que sí ocurre es que la aplicación se conecta directamente desde tu dispositivo a los servicios que necesita. Esta es la lista completa, con lo que ve cada uno (siempre, como mínimo, tu dirección IP).
 
@@ -27,30 +27,30 @@ Lo que sí ocurre es que la aplicación se conecta directamente desde tu disposi
 - **via.placeholder.com** puede recibir una petición de una imagen negra de relleno cuando un vídeo no se puede reproducir y no tiene imagen de fondo.
 - **flagcdn.com** recibe el código de tu país solo si activas el botón de idioma de la barra superior (no está activado por defecto).
 - **DNS público de Google (8.8.8.8)**: si lo eliges en los ajustes de red, o si la aplicación cambia a él después de que un vídeo se quede parado, los nombres de los servidores a los que se conecta la aplicación se consultan allí.
-- **Micrófono**: el permiso se usa solo para la búsqueda por voz, que realiza el servicio de reconocimiento de voz de Android. Ese servicio, que no es de Leanview, puede enviar el audio a su proveedor (normalmente Google); lo gobiernan los ajustes de voz de tu dispositivo. Leanview no graba ni guarda audio.
-- **Respaldo del bloqueo de desafíos de YouTube**: para reproducir, Leanview resuelve un desafío de YouTube con unos scripts que ya vienen incluidos en la aplicación. Solo si fallaran los incluidos y los guardados, descargaría la copia publicada de esos scripts desde github.com (proyecto yt-dlp/ejs). Es poco habitual.
+- **Micrófono**: el permiso se usa solo para la búsqueda por voz, que realiza el servicio de reconocimiento de voz de Android. Ese servicio, que no es de LeanView, puede enviar el audio a su proveedor (normalmente Google); lo gobiernan los ajustes de voz de tu dispositivo. LeanView no graba ni guarda audio.
+- **Respaldo del bloqueo de desafíos de YouTube**: para reproducir, LeanView resuelve un desafío de YouTube con unos scripts que ya vienen incluidos en la aplicación. Solo si fallaran los incluidos y los guardados, descargaría la copia publicada de esos scripts desde github.com (proyecto yt-dlp/ejs). Es poco habitual.
 
 ### Actualizaciones (github.com)
 
-Al abrirse, y como mucho una vez por minuto, Leanview descarga `https://github.com/leanview/leanview/releases/latest/download/update.json` para saber si hay una versión nueva. Si la hay, **descarga el APK en segundo plano** desde la misma página de versiones (GitHub y sus servidores de descarga) y después te pide confirmar la instalación. GitHub ve tu dirección IP y la hora; Leanview no envía ninguna otra información. Puedes desactivar la comprobación en Ajustes > Acerca de.
+Al abrirse, y como mucho una vez por minuto, LeanView descarga `https://github.com/leanview/leanview/releases/latest/download/update.json` para saber si hay una versión nueva. Si la hay, **descarga el APK en segundo plano** desde la misma página de versiones (GitHub y sus servidores de descarga) y después te pide confirmar la instalación. GitHub ve tu dirección IP y la hora; LeanView no envía ninguna otra información. Puedes desactivar la comprobación en Ajustes > Acerca de.
 
 ### El archivo constants.json de SmartTube (github.com/yuliskov/SmartTube)
 
-Leanview se basa en SmartTube y, para el inicio de sesión con Google y la copia de seguridad en Google Drive, necesita un identificador de cliente OAuth de Google que SmartTube publica en un archivo. Por eso, la primera vez que algo lo necesita en una sesión de la aplicación (inicio de sesión con Google, renovación de la sesión, copia de seguridad en Drive), Leanview descarga `https://github.com/yuliskov/SmartTube/releases/download/latest/constants.json` desde GitHub. No lo hace al arrancar ni al reproducir vídeos.
+LeanView se basa en SmartTube y, para el inicio de sesión con Google y la copia de seguridad en Google Drive, necesita un identificador de cliente OAuth de Google que SmartTube publica en un archivo. Por eso, la primera vez que algo lo necesita en una sesión de la aplicación (inicio de sesión con Google, renovación de la sesión, copia de seguridad en Drive), LeanView descarga `https://github.com/yuliskov/SmartTube/releases/download/latest/constants.json` desde GitHub. No lo hace al arrancar ni al reproducir vídeos.
 
 - Qué se pide: ese archivo, con una petición `GET` normal. La petición no lleva ninguna cuenta, cookie, vídeo ni búsqueda.
 - Qué ve GitHub: tu dirección IP, la hora y que una aplicación pidió ese archivo de SmartTube.
 - Qué pasa si falta o GitHub no responde: el inicio de sesión con Google falla (y con él la copia de seguridad en Drive). La reproducción normal no lo usa.
-- El archivo también trae una clave de la API de datos de YouTube; Leanview no la usa. Los nombres e iconos de los canales (grupos de canales, importación de suscripciones) salen de las mismas peticiones a YouTube que la aplicación hace para la página de un canal.
-- La pantalla de consentimiento de Google puede mostrar el nombre del proyecto de SmartTube, porque el identificador de cliente pertenece a su proyecto de Google Cloud. Leanview es independiente de SmartTube y de Google.
+- El archivo también trae una clave de la API de datos de YouTube; LeanView no la usa. Los nombres e iconos de los canales (grupos de canales, importación de suscripciones) salen de las mismas peticiones a YouTube que la aplicación hace para la página de un canal.
+- La pantalla de consentimiento de Google puede mostrar el nombre del proyecto de SmartTube, porque el identificador de cliente pertenece a su proyecto de Google Cloud. LeanView es independiente de SmartTube y de Google.
 
 ### Tu propio servidor y tu instancia de Invidious (opcionales)
 
-Si escribes la dirección de un servidor compatible o de una instancia de Invidious, tus datos van solo ahí, y a ninguna otra parte: la dirección se guarda en tu dispositivo y Leanview no trae ninguna incorporada. Ese servidor ve tu dirección IP, tus cambios de suscripciones y la posición de tus vídeos (hora, progreso y duración, con los identificadores en forma de huella); el título, el autor, la miniatura y los identificadores reales del vídeo y del canal viajan cifrados con una clave que solo está en tus dispositivos. Lo que ese servidor hace con ello depende de quien lo administra. Sin servidor ni instancia, Leanview no hace ninguna petición a ellos.
+Si escribes la dirección de un servidor compatible o de una instancia de Invidious, tus datos van solo ahí, y a ninguna otra parte: la dirección se guarda en tu dispositivo y LeanView no trae ninguna incorporada. Ese servidor ve tu dirección IP, tus cambios de suscripciones y la posición de tus vídeos (hora, progreso y duración, con los identificadores en forma de huella); el título, el autor, la miniatura y los identificadores reales del vídeo y del canal viajan cifrados con una clave que solo está en tus dispositivos. Lo que ese servidor hace con ello depende de quien lo administra. Sin servidor ni instancia, LeanView no hace ninguna petición a ellos.
 
 ### Inicio de sesión con Google y copia de seguridad
 
-Si inicias sesión con Google, la autorización se hace con el flujo oficial de Google; las credenciales de acceso se guardan en tu dispositivo, no en Leanview. Si guardas una copia de seguridad en Google Drive, va a tu propio Drive. Las copias locales se guardan en la carpeta `LeanviewBackup` de Documentos.
+Si inicias sesión con Google, la autorización se hace con el flujo oficial de Google; las credenciales de acceso se guardan en tu dispositivo, no en LeanView. Si guardas una copia de seguridad en Google Drive, va a tu propio Drive. Las copias locales se guardan en la carpeta `LeanviewBackup` de Documentos.
 
 ### Cambios
 
@@ -60,7 +60,7 @@ Si esta política cambia, se publica aquí y se anota en el [CHANGELOG](CHANGELO
 
 ## English
 
-**Leanview collects nothing.** There is no Leanview account, no usage analytics, no crash reports, no advertising and no telemetry, and there is no Leanview server that receives data. The app contains no Firebase, Crashlytics or similar component (checked in the code and in the published APK). Your settings, local history and sign-in data stay on your device only.
+**LeanView collects nothing.** There is no LeanView account, no usage analytics, no crash reports, no advertising and no telemetry, and there is no LeanView server that receives data. The app contains no Firebase, Crashlytics or similar component (checked in the code and in the published APK). Your settings, local history and sign-in data stay on your device only.
 
 What does happen is that the app connects directly from your device to the services it needs. This is the complete list, with what each one sees (always, at least, your IP address).
 
@@ -81,30 +81,30 @@ What does happen is that the app connects directly from your device to the servi
 - **via.placeholder.com** may receive a request for a plain black filler image when a video cannot be played and has no background image.
 - **flagcdn.com** receives your country code only if you turn on the language button in the top bar (it is not on by default).
 - **Google Public DNS (8.8.8.8)**: if you choose it in the network settings, or the app switches to it after a playback stall, the names of the servers the app connects to are looked up there.
-- **Microphone**: the permission is used only for voice search, which is done by Android's speech recognition service. That service, which is not part of Leanview, may send the audio to its provider (usually Google); your device's voice settings govern it. Leanview does not record or store audio.
-- **Fallback for YouTube's challenge**: to play videos, Leanview solves a YouTube challenge with scripts that are already bundled in the app. Only if the bundled and the cached ones failed would it download the published copy of those scripts from github.com (the yt-dlp/ejs project). This is unusual.
+- **Microphone**: the permission is used only for voice search, which is done by Android's speech recognition service. That service, which is not part of LeanView, may send the audio to its provider (usually Google); your device's voice settings govern it. LeanView does not record or store audio.
+- **Fallback for YouTube's challenge**: to play videos, LeanView solves a YouTube challenge with scripts that are already bundled in the app. Only if the bundled and the cached ones failed would it download the published copy of those scripts from github.com (the yt-dlp/ejs project). This is unusual.
 
 ### Updates (github.com)
 
-When it opens, and at most once a minute, Leanview downloads `https://github.com/leanview/leanview/releases/latest/download/update.json` to learn whether a newer version exists. If there is one, it **downloads the APK in the background** from the same releases page (GitHub and its download servers) and then asks you to confirm the install. GitHub sees your IP address and the time; Leanview sends no other information. You can turn the check off in Settings > About.
+When it opens, and at most once a minute, LeanView downloads `https://github.com/leanview/leanview/releases/latest/download/update.json` to learn whether a newer version exists. If there is one, it **downloads the APK in the background** from the same releases page (GitHub and its download servers) and then asks you to confirm the install. GitHub sees your IP address and the time; LeanView sends no other information. You can turn the check off in Settings > About.
 
 ### SmartTube's constants.json file (github.com/yuliskov/SmartTube)
 
-Leanview is based on SmartTube and, for Google sign-in and Google Drive backup, it needs a Google OAuth client identifier that SmartTube publishes in a file. So the first time something needs it in a run of the app (Google sign-in, refreshing the session, Drive backup), Leanview downloads `https://github.com/yuliskov/SmartTube/releases/download/latest/constants.json` from GitHub. It does not do this at startup or while playing videos.
+LeanView is based on SmartTube and, for Google sign-in and Google Drive backup, it needs a Google OAuth client identifier that SmartTube publishes in a file. So the first time something needs it in a run of the app (Google sign-in, refreshing the session, Drive backup), LeanView downloads `https://github.com/yuliskov/SmartTube/releases/download/latest/constants.json` from GitHub. It does not do this at startup or while playing videos.
 
 - What is requested: that file, with a plain `GET` request. The request carries no account, cookie, video or search.
 - What GitHub sees: your IP address, the time, and that an app asked for that SmartTube file.
 - What happens if it is missing or GitHub does not answer: Google sign-in fails (and with it Drive backup). Normal playback does not use it.
-- The file also carries a YouTube Data API key; Leanview does not use it. Channel names and icons (channel groups, subscription import) come from the same YouTube requests the app makes for a channel's page.
-- Google's consent screen may show the name of SmartTube's project, because the client identifier belongs to its Google Cloud project. Leanview is independent of SmartTube and Google.
+- The file also carries a YouTube Data API key; LeanView does not use it. Channel names and icons (channel groups, subscription import) come from the same YouTube requests the app makes for a channel's page.
+- Google's consent screen may show the name of SmartTube's project, because the client identifier belongs to its Google Cloud project. LeanView is independent of SmartTube and Google.
 
 ### Your own server and Invidious instance (optional)
 
-If you type the address of a compatible server or an Invidious instance, your data goes only there, and nowhere else: the address is stored on your device and Leanview has none built in. That server sees your IP address, your subscription changes and the position of your videos (time, progress and duration, with identifiers in fingerprint form); the title, author, thumbnail and the real video and channel identifiers travel encrypted with a key that exists only on your devices. What that server does with it depends on whoever runs it. Without a server and an instance, Leanview makes no request to them.
+If you type the address of a compatible server or an Invidious instance, your data goes only there, and nowhere else: the address is stored on your device and LeanView has none built in. That server sees your IP address, your subscription changes and the position of your videos (time, progress and duration, with identifiers in fingerprint form); the title, author, thumbnail and the real video and channel identifiers travel encrypted with a key that exists only on your devices. What that server does with it depends on whoever runs it. Without a server and an instance, LeanView makes no request to them.
 
 ### Google sign-in and backup
 
-If you sign in with Google, authorization uses Google's official flow; the access credentials are kept on your device, not with Leanview. If you save a backup to Google Drive it goes to your own Drive. Local backups are saved in the `LeanviewBackup` folder of Documents.
+If you sign in with Google, authorization uses Google's official flow; the access credentials are kept on your device, not with LeanView. If you save a backup to Google Drive it goes to your own Drive. Local backups are saved in the `LeanviewBackup` folder of Documents.
 
 ### Changes
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Leanview logo (brand B). Generated from one drawing: change the generator, not this file. -->
+<!-- LeanView logo (brand D). Generated from one drawing: change the generator, not this file. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
-        android:fillColor="#0F1623"
+        android:fillColor="#7C3AED"
         android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
 </vector>

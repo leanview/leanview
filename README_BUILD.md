@@ -1,6 +1,6 @@
-# Building Leanview
+# Building LeanView
 
-This is the complete corresponding source of Leanview 1.0.0 (GPL-3.0, see LICENSE and NOTICE.md). The APKs published with the
+This is the complete corresponding source of LeanView 1.0.1 (GPL-3.0, see LICENSE and NOTICE.md). The APKs published with the
 release were built from exactly this tree.
 
 ## What you need
@@ -12,11 +12,11 @@ release were built from exactly this tree.
 ## Build
 
 ```
-./gradlew --no-daemon :smarttubetv:assembleLeanviewRelease -PleanviewVersion=1.0.0
+./gradlew --no-daemon :smarttubetv:assembleLeanviewRelease -PleanviewVersion=1.0.1
 ```
 
 The APKs (arm64-v8a, armeabi-v7a, x86 and universal) are written to `smarttubetv/build/outputs/apk/leanview/release/`, named
-`Leanview_1.0.0_<abi>.apk`. Without a signing configuration they are UNSIGNED. The version code is
+`Leanview_1.0.1_<abi>.apk`. Without a signing configuration they are UNSIGNED. The version code is
 major * 10000 + minor * 100 + patch.
 
 `./gradlew --no-daemon :smarttubetv:testLeanviewDebugUnitTest` runs the unit tests of the app and `:common:testDebugUnitTest`

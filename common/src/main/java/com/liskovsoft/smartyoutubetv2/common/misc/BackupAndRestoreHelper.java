@@ -46,7 +46,7 @@ public class BackupAndRestoreHelper implements OnResult {
 
         String backupZipName = getSavedBackupZipName();
 
-        // leanview: the folder is the flavor's (LeanviewBackup in Leanview), see BackupFolders
+        // leanview: the folder is the flavor's (LeanviewBackup in LeanView), see BackupFolders
         final String folder = BackupFolders.primary(mContext);
         MediaStoreFile file = new MediaStoreFile(mContext, backupZipName, folder);
         if (!file.isWritable()) {

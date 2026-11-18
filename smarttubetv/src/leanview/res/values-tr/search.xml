@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- leanview: leanbackassistant's Turkish strings name SmartTube; the flavor overrides them. -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
-    <string name="search_label">Leanview</string>
-    <string name="settings_description">Leanview Videoları</string>
+    <string name="search_label">LeanView</string>
+    <string name="settings_description">LeanView Videoları</string>
 </resources>

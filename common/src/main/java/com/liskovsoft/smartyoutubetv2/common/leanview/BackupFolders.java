@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * leanview: the name of the backup folder (Documents and Google Drive). Upstream calls it SmartTubeBackup; Leanview (flavor
+ * leanview: the name of the backup folder (Documents and Google Drive). Upstream calls it SmartTubeBackup; LeanView (flavor
  * leanview) writes to LeanviewBackup (R.string.leanview_backup_folder) but a restore also looks into an existing
  * SmartTubeBackup, so the settings of the old app can be brought over. Other flavors: the name does not change.
  */

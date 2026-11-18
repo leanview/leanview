@@ -1,6 +1,6 @@
-# Leanview
+# LeanView
 
-<img src="logo.svg" alt="Leanview" width="320">
+<img src="logo.svg" alt="LeanView" width="320">
 
 [Español](#español) | [English](#english)
 
@@ -8,9 +8,9 @@
 
 ## Español
 
-Leanview es un reproductor de YouTube para Android TV, Google TV y teléfonos Android. Sin anuncios en el reproductor y sin necesidad de iniciar sesión: abres la aplicación y buscas o miras vídeos. Si quieres, puedes iniciar sesión con tu cuenta de Google para ver tus suscripciones y tu historial.
+LeanView es un reproductor de YouTube para Android TV, Google TV y teléfonos Android. Sin anuncios en el reproductor y sin necesidad de iniciar sesión: abres la aplicación y buscas o miras vídeos. Si quieres, puedes iniciar sesión con tu cuenta de Google para ver tus suscripciones y tu historial.
 
-Leanview no recoge datos de ningún tipo. Qué conexiones hace la aplicación, a quién y por qué, está en [PRIVACY.md](PRIVACY.md).
+LeanView no recoge datos de ningún tipo. Qué conexiones hace la aplicación, a quién y por qué, está en [PRIVACY.md](PRIVACY.md).
 
 ### Descargar
 
@@ -40,13 +40,13 @@ Si prefieres no usar Downloader, descarga el APK en tu teléfono o en un ordenad
 1. En el teléfono abre <https://github.com/leanview/leanview/releases/latest> con tu navegador.
 2. Descarga el `.apk` (`arm64-v8a` en casi todos los teléfonos actuales; si dudas, `universal`).
 3. Ábrelo desde las descargas. Android pedirá permiso para que el navegador instale aplicaciones. Ese permiso se queda concedido a ese navegador hasta que lo quites: puedes revocarlo en **Ajustes > Aplicaciones > (tu navegador) > Instalar apps desconocidas**.
-4. Pulsa **Instalar**. Google Play Protect puede avisar de que la aplicación no viene de Play Store: es normal, porque Leanview no se distribuye ahí.
+4. Pulsa **Instalar**. Google Play Protect puede avisar de que la aplicación no viene de Play Store: es normal, porque LeanView no se distribuye ahí.
 
 En el teléfono, la misma aplicación se maneja con el dedo. Si en algún aparato la pantalla no se adapta bien, cambia **Ajustes > Interfaz de usuario > Tipo de pantalla** (Automático, TV o Teléfono).
 
 ### Comprobar que la descarga es auténtica
 
-Los APK de Leanview están firmados con un certificado propio cuya huella SHA-256 es:
+Los APK de LeanView están firmados con un certificado propio cuya huella SHA-256 es:
 
 `7cdbbb0d922f07c998fc3297c40c78bbab829e731c6eec91633b8a839838c075`
 
@@ -54,11 +54,11 @@ Con las herramientas de Android SDK puedes comprobarlo: `apksigner verify --prin
 
 ### Actualizaciones
 
-Al abrirse, Leanview comprueba en `github.com/leanview/leanview` si hay una versión nueva. Si la hay, **descarga el APK en segundo plano** desde esa misma página de versiones y después te avisa y te pide confirmar la instalación (Android te lo vuelve a preguntar). Puedes desactivar la comprobación en **Ajustes > Acerca de**. Allí mismo, **Versiones** abre la página de descargas y **Licencias** muestra la licencia y los avisos.
+Al abrirse, LeanView comprueba en `github.com/leanview/leanview` si hay una versión nueva. Si la hay, **descarga el APK en segundo plano** desde esa misma página de versiones y después te avisa y te pide confirmar la instalación (Android te lo vuelve a preguntar). Puedes desactivar la comprobación en **Ajustes > Acerca de**. Allí mismo, **Versiones** abre la página de descargas y **Licencias** muestra la licencia y los avisos.
 
 ### Código fuente
 
-Leanview es software libre bajo la licencia GPL-3.0. El código fuente de cada versión está en este repositorio: la confirmación (commit) con la etiqueta de la versión, por ejemplo `v1.0.0`, contiene exactamente el código con el que se construyeron los APK de esa versión, y `README_BUILD.md` explica cómo construirlos.
+LeanView es software libre bajo la licencia GPL-3.0. El código fuente de cada versión está en este repositorio: la confirmación (commit) con la etiqueta de la versión, por ejemplo `v1.0.0`, contiene exactamente el código con el que se construyeron los APK de esa versión, y `README_BUILD.md` explica cómo construirlos.
 
 ### Problemas y sugerencias
 
@@ -66,17 +66,17 @@ Abre una incidencia en <https://github.com/leanview/leanview/issues>. Indica la 
 
 ### Aviso legal y licencia
 
-Leanview es un proyecto independiente. No está afiliado, respaldado ni conectado de ningún modo con YouTube, con Google ni con el proyecto SmartTube. YouTube es una marca registrada de Google LLC; los demás nombres son marcas de sus propietarios. Leanview se ofrece sin garantía de ningún tipo; el uso de YouTube a través de ella está sujeto a las condiciones del servicio de YouTube.
+LeanView es un proyecto independiente. No está afiliado, respaldado ni conectado de ningún modo con YouTube, con Google ni con el proyecto SmartTube. YouTube es una marca registrada de Google LLC; los demás nombres son marcas de sus propietarios. LeanView se ofrece sin garantía de ningún tipo; el uso de YouTube a través de ella está sujeto a las condiciones del servicio de YouTube.
 
-Leanview se basa en [SmartTube](https://github.com/yuliskov/SmartTube) (licencia MIT; su aviso de licencia se conserva tal cual en [NOTICE.md](NOTICE.md)) y contiene código GPL-3.0 derivado de [NewPipe](https://github.com/TeamNewPipe/NewPipe) y de [bgutil-ytdlp-pot-provider](https://github.com/Brainicism/bgutil-ytdlp-pot-provider). Por eso Leanview se distribuye bajo la GPL-3.0: véase [LICENSE](LICENSE). Los demás componentes y sus licencias están en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+LeanView se basa en [SmartTube](https://github.com/yuliskov/SmartTube) (licencia MIT; su aviso de licencia se conserva tal cual en [NOTICE.md](NOTICE.md)) y contiene código GPL-3.0 derivado de [NewPipe](https://github.com/TeamNewPipe/NewPipe) y de [bgutil-ytdlp-pot-provider](https://github.com/Brainicism/bgutil-ytdlp-pot-provider). Por eso LeanView se distribuye bajo la GPL-3.0: véase [LICENSE](LICENSE). Los demás componentes y sus licencias están en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ---
 
 ## English
 
-Leanview is a YouTube player for Android TV, Google TV and Android phones. No ads in the player and no account needed: open the app and search or watch. If you want, you can sign in with your Google account to see your subscriptions and history.
+LeanView is a YouTube player for Android TV, Google TV and Android phones. No ads in the player and no account needed: open the app and search or watch. If you want, you can sign in with your Google account to see your subscriptions and history.
 
-Leanview collects no data of any kind. What connections the app makes, to whom and why, is in [PRIVACY.md](PRIVACY.md).
+LeanView collects no data of any kind. What connections the app makes, to whom and why, is in [PRIVACY.md](PRIVACY.md).
 
 ### Download
 
@@ -106,13 +106,13 @@ If you prefer not to use Downloader, download the APK on a phone or a computer, 
 1. On the phone, open <https://github.com/leanview/leanview/releases/latest> in your browser.
 2. Download the `.apk` (`arm64-v8a` on almost all current phones; `universal` if unsure).
 3. Open it from your downloads. Android asks for permission for the browser to install apps. That permission stays granted to that browser until you remove it: you can revoke it in **Settings > Apps > (your browser) > Install unknown apps**.
-4. Tap **Install**. Google Play Protect may warn that the app does not come from the Play Store: that is expected, because Leanview is not distributed there.
+4. Tap **Install**. Google Play Protect may warn that the app does not come from the Play Store: that is expected, because LeanView is not distributed there.
 
 On a phone the same app is used with your finger. If the screen does not adapt on some device, change **Settings > User interface > Screen type** (Automatic, TV or Phone).
 
 ### Check that the download is genuine
 
-Leanview APKs are signed with a certificate of their own whose SHA-256 fingerprint is:
+LeanView APKs are signed with a certificate of their own whose SHA-256 fingerprint is:
 
 `7cdbbb0d922f07c998fc3297c40c78bbab829e731c6eec91633b8a839838c075`
 
@@ -120,11 +120,11 @@ With the Android SDK tools you can check it: `apksigner verify --print-certs Lea
 
 ### Updates
 
-When it opens, Leanview checks `github.com/leanview/leanview` for a newer version. If there is one, it **downloads the APK in the background** from that same releases page, then tells you and asks you to confirm the install (Android asks you again). You can turn the check off in **Settings > About**. In the same place, **Releases** opens the download page and **Licenses** shows the license and the notices.
+When it opens, LeanView checks `github.com/leanview/leanview` for a newer version. If there is one, it **downloads the APK in the background** from that same releases page, then tells you and asks you to confirm the install (Android asks you again). You can turn the check off in **Settings > About**. In the same place, **Releases** opens the download page and **Licenses** shows the license and the notices.
 
 ### Source code
 
-Leanview is free software under the GPL-3.0 license. The source code of each release is in this repository: the commit tagged with the version, for example `v1.0.0`, holds exactly the source the APKs of that version were built from, and `README_BUILD.md` explains how to build them.
+LeanView is free software under the GPL-3.0 license. The source code of each release is in this repository: the commit tagged with the version, for example `v1.0.0`, holds exactly the source the APKs of that version were built from, and `README_BUILD.md` explains how to build them.
 
 ### Problems and suggestions
 
@@ -132,6 +132,6 @@ Open an issue at <https://github.com/leanview/leanview/issues>. Say which versio
 
 ### Disclaimer and license
 
-Leanview is an independent project. It is not affiliated with, endorsed by or connected to YouTube, Google or the SmartTube project in any way. YouTube is a trademark of Google LLC; all other names are trademarks of their owners. Leanview is provided without warranty of any kind; using YouTube through it is subject to YouTube's terms of service.
+LeanView is an independent project. It is not affiliated with, endorsed by or connected to YouTube, Google or the SmartTube project in any way. YouTube is a trademark of Google LLC; all other names are trademarks of their owners. LeanView is provided without warranty of any kind; using YouTube through it is subject to YouTube's terms of service.
 
-Leanview is based on [SmartTube](https://github.com/yuliskov/SmartTube) (MIT license; its license notice is kept verbatim in [NOTICE.md](NOTICE.md)) and contains GPL-3.0 code derived from [NewPipe](https://github.com/TeamNewPipe/NewPipe) and [bgutil-ytdlp-pot-provider](https://github.com/Brainicism/bgutil-ytdlp-pot-provider). That is why Leanview as a whole is distributed under the GPL-3.0: see [LICENSE](LICENSE). The other components and their licenses are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+LeanView is based on [SmartTube](https://github.com/yuliskov/SmartTube) (MIT license; its license notice is kept verbatim in [NOTICE.md](NOTICE.md)) and contains GPL-3.0 code derived from [NewPipe](https://github.com/TeamNewPipe/NewPipe) and [bgutil-ytdlp-pot-provider](https://github.com/Brainicism/bgutil-ytdlp-pot-provider). That is why LeanView as a whole is distributed under the GPL-3.0: see [LICENSE](LICENSE). The other components and their licenses are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

@@ -1,7 +1,7 @@
 apply from: gradle.ext.sharedModulesConstants
 
 // leanview: upstream's Google Services / Crashlytics plugins served only its stbeta and ststable flavors, removed with
-// them (final review M5). Leanview has no Firebase.
+// them (final review M5). LeanView has no Firebase.
 
 apply plugin: 'com.android.application'
 
@@ -115,7 +115,7 @@ android {
             def arch = output.getFilter(com.android.build.OutputFile.ABI)
             arch = arch != null ? arch : "universal"
 
-            // leanview: Leanview's files carry its own name and no flavor: Leanview_1.0.0_arm64-v8a.apk
+            // leanview: LeanView's files carry its own name and no flavor: Leanview_1.0.0_arm64-v8a.apk
             def newApkName = sprintf("Leanview_%s_%s.apk", [version, arch])
 
             // gradle 4.6 migration
@@ -145,7 +145,7 @@ android {
 
     // NOTE: The main goal of prefixing a flavor is to group flavors' folders together
     productFlavors {
-        // leanview: Leanview (decided 2026-11-14): its own package, name, version and update channel (the
+        // leanview: LeanView (decided 2026-11-14): its own package, name, version and update channel (the
         // manifest in the leanview/leanview GitHub releases, see update_urls.xml). It installs beside the
         // official SmartTube and shares nothing with it. Upstream's stbeta, ststable and stfdroid flavors
         // (minSdk 17, QuickJS needs 21) were removed (final review M5); the libraries have no flavors.
@@ -154,7 +154,7 @@ android {
             // Android 6.0+: the server connection keeps its keys in the Android keystore and uses
             // libsodium (lazysodium, minSdk 21). Android 14 TVs are the target.
             minSdkVersion 23
-            // Leanview's own version (-PleanviewVersion=X.Y.Z, 1.0.0 for the first release).
+            // LeanView's own version (-PleanviewVersion=X.Y.Z, 1.0.0 for the first release).
             // versionCode = major * 10000 + minor * 100 + patch (minor and patch below 100): 1.0.0 = 10000,
             // 1.0.1 = 10001, 1.1.0 = 10100, 2.0.0 = 20000. It only grows with the version, which is what the
             // update check compares (the release tooling uses the same formula).
@@ -272,7 +272,7 @@ tasks.matching { it.name == 'assembleLeanviewRelease' || it.name == 'bundleLeanv
     dependsOn 'checkReleaseAbis'
 }
 
-// leanview: Leanview's legal texts are bundled as assets (Settings > About > Licenses). They are COPIED at build time from
+// leanview: LeanView's legal texts are bundled as assets (Settings > About > Licenses). They are COPIED at build time from
 // public-repo/ (LICENSE, NOTICE.md and THIRD_PARTY_NOTICES.md, the files of the public repo; the last is generated
 // from the dependency graph), never kept a second time. leanview only; the build fails when a file is missing.
 abstract class LeanviewLegalAssets extends DefaultTask {

@@ -9,7 +9,7 @@ import com.liskovsoft.smartyoutubetv2.common.app.presenters.AppDialogPresenter;
 import java.util.List;
 
 /**
- * leanview: Settings > About > Licenses. Shows Leanview's LICENSE (with SmartTube's MIT notice) and the third-party notices,
+ * leanview: Settings > About > Licenses. Shows LeanView's LICENSE (with SmartTube's MIT notice) and the third-party notices,
  * the very files of public-repo/ that the flavor build bundles as assets ({@link LegalTexts}). One line in each About
  * presenter calls {@link #append}; a build without the assets (other flavors) shows no button.
  */
